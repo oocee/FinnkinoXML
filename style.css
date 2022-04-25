@@ -6,9 +6,17 @@ html {
     text-transform: uppercase; 
     font-size: 200%;
     margin: 0;
+    display: inline;
+}
+#search {
+    color: antiquewhite;
+    text-transform: uppercase; 
+    font-size: 200%;
+    margin: 0;   
 }
 #theatreSelection {
     display: flex;
+    flex-shrink: 0;
     margin-top: 30px;
     margin-bottom: 30px;
 }
@@ -86,7 +94,69 @@ html {
     margin-left: 30px;
     align-items: center;
 }
-@media (max-width: 800px) {
+#info {
+    margin-left: 30px;
+    font-size: 200%;
+    padding: 10px;
+    transition: transform .1s;
+    text-transform: uppercase;
+    background-color: yellow;
+    box-shadow: 0 0 .2rem #fff,
+            0 0 .1rem #fff,
+            0 0 0.1rem yellow,
+            0 0 0.1rem yellow,
+            0 0 0.9rem  yellow,
+            inset 0 0 1.0rem yellow; 
+}
+#info:hover {
+    transform: scale(1.2);
+}
+a {
+    text-decoration: none;
+    color: black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+#inputf {
+    height: 24px;
+    text-align: center;
+    align-items: center;
+    width: 150px;
+    font-size: 90%;
+    margin-left: 20px; 
+}
+#sButton {
+    height: 40px;
+    margin: auto;
+    position: relative;
+    bottom: 5px;
+    cursor: pointer;
+    background-color: antiquewhite;
+    font-weight: 500;
+    font-size: large;
+    box-shadow: 0 0 .2rem #fff,
+    0 0 .1rem #fff,
+    0 0 0.1rem yellow,
+    0 0 0.1rem yellow,
+    0 0 0.9rem  yellow,
+    inset 0 0 1.0rem yellow; ;
+}
+#valitse {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+}
+#haku {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+}
+#search {
+    margin-left: 20px;
+}
+#sButton:hover{
+    transform: scale(1.1);
+}
+@media (max-width: 1150px) {
     #frame {
       flex-direction: column;
     }
