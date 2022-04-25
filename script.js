@@ -1,31 +1,30 @@
 
 
 document.getElementById('theatre').addEventListener('change', loadTheatre);
+
 document.getElementById('sButton').addEventListener('click', searchMovie);
 
+// This function searches for information in the selected theater and displays it in "shows" div.
 function loadTheatre() {
-    var theatres = null;
     var theatreId = document.getElementById('theatre').value;
-    //console.log(theatreId);
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://www.finnkino.fi/xml/Schedule/', true);
     xhr.send();
     xhr.onload = function() {
+        // checks if status is OK. If it is Ok then it continues.
         if (xhr.status == 200) {
             xmlDoc = xhr.responseXML;
-            show = xmlDoc.getElementsByTagName('Show');
+            var show = xmlDoc.getElementsByTagName('Show');
             var tID = null;
+            // Delete function is used for clear "shows" div before displaying new data.
             delete1();
             for (var i = 0; i < show.length; i++) {
                for (var a = 0; a < show[i].children.length; a++) {
                    var str = show[i].children[a].nodeName;
-                   // console.log(str);
                    if (str.includes('TheatreID')) {
                         tID = show[i].children[a].innerHTML;
-                        // console.log(tID);
-                        //console.log(show[i].children[a].children.length);
+                        // This displays matching theatres data in "shows" div.  
                         if (theatreId == tID) {
-                            // console.log(show[i].children[15].innerHTML);
                             document.getElementById("shows").innerHTML += 
                             "<div id='frame'>"
                                 +"<div id='movie'>" 
@@ -56,9 +55,11 @@ function loadTheatre() {
         }
          
     }
+    //This function search movie name from XML data and returns it.
     function moviename(i) {
         return show[i].children[15].innerHTML;
     }
+    //This function search movie image link from XML data and returns it.
     function image(i) {
         var b = null;
         var d = null;
@@ -75,6 +76,7 @@ function loadTheatre() {
             }
         return show[i].children[b].children[d].innerHTML;
     }
+    //This function search rating image link from XML data and returns it.
     function rating(i) {
         var b = null;
             for (a = 0; a < show[i].children.length; a++) {
@@ -84,6 +86,7 @@ function loadTheatre() {
              }
         return show[i].children[b].innerHTML;
     }
+    //This function search movie starting time from XML data and returns it.
     function startingTime(i) {
         var b = null;
             for (a = 0; a < show[i].children.length; a++) {
@@ -95,6 +98,7 @@ function loadTheatre() {
         var timex = time.substr(11, 5);  
         return timex;      
     }
+    //This function search movie auditorium from XML data and returns it.
     function auditorium(i) {
         var b = null;
             for (a = 0; a < show[i].children.length; a++) {
@@ -104,6 +108,7 @@ function loadTheatre() {
              }
         return show[i].children[b].innerHTML;        
     }
+    //This function search link where you can get more info from movie from XML data and returns it.
     function linkInfo(i) {
         var b = null;
             for (a = 0; a < show[i].children.length; a++) {
@@ -116,27 +121,25 @@ function loadTheatre() {
 
 }
 
+
 function searchMovie () {
-    //var movieName = document.getElementById('inputf').value;
-    //console.log(movieName);
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://www.finnkino.fi/xml/Schedule/', true);
     xhr.send();
     xhr.onload = function() {
+        // checks if status is OK. If it is Ok then it continues.
         if (xhr.status == 200) {
             xmlDoc = xhr.responseXML;
             show = xmlDoc.getElementsByTagName('Show');
-            var asd = null;
+            // Delete function is used for clear "shows" div before displaying new data.
             delete1();
             for (var a = 0; a < show.length; a++) {
                 for (var b = 0; b < show[a].children.length; b++) {
-                    //if (show[a].children[b].nodeName.includes('Title')) {
-                    //    movieId = show[a].children[b].innerHTML;
-                    //    console.log(show[a].children[b].nodeName)
-                    //}
                     var movieN = show[a].children[15].innerHTML;
+                    //There both movieN and data privided by user is changed to uppercase that it easier to compare.
                     var movieNa = movieN.toUpperCase();
                     if (movieNa.includes(document.getElementById('inputf').value.toUpperCase())) {
+                        //This displays matching movies data in "shows" div.  
                         document.getElementById("shows").innerHTML += 
                             "<div id='frame'>"
                                 +"<div id='movie'>" 
@@ -166,9 +169,11 @@ function searchMovie () {
 
         }
 }
+//This function search movie name from XML data and returns it.
 function moviename(i) {
     return show[i].children[15].innerHTML;
 }
+//This function search movie image link from XML data and returns it.
 function image(i) {
     var b = null;
     var d = null;
@@ -185,6 +190,7 @@ function image(i) {
         }
     return show[i].children[b].children[d].innerHTML;
 }
+//This function search rating image link from XML data and returns it.
 function rating(i) {
     var b = null;
         for (a = 0; a < show[i].children.length; a++) {
@@ -194,6 +200,7 @@ function rating(i) {
          }
     return show[i].children[b].innerHTML;
 }
+//This function search movie starting time from XML data and returns it.
 function startingTime(i) {
     var b = null;
         for (a = 0; a < show[i].children.length; a++) {
@@ -205,6 +212,7 @@ function startingTime(i) {
     var timex = time.substr(11, 5);  
     return timex;      
 }
+//This function search movie auditorium from XML data and returns it.
 function auditorium(i) {
     var b = null;
         for (a = 0; a < show[i].children.length; a++) {
@@ -214,6 +222,7 @@ function auditorium(i) {
          }
     return show[i].children[b].innerHTML;        
 }
+//This function search link where you can get more info from movie from XML data and returns it.
 function linkInfo(i) {
     var b = null;
         for (a = 0; a < show[i].children.length; a++) {
@@ -226,6 +235,7 @@ function linkInfo(i) {
 
 
 }
+
 function delete1() {
     document.getElementById("shows").innerHTML = " ";
 }
