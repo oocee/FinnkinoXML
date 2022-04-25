@@ -11,7 +11,7 @@ function loadTheatre() {
     xhr.open('GET', 'https://www.finnkino.fi/xml/Schedule/', true);
     xhr.send();
     xhr.onload = function() {
-        // checks if status is OK. If it is Ok then it continues.
+        // checks if status is OK. If it is Ok then it continues..
         if (xhr.status == 200) {
             xmlDoc = xhr.responseXML;
             var show = xmlDoc.getElementsByTagName('Show');
