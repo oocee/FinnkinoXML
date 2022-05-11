@@ -14,7 +14,7 @@ function loadTheatre() {
         // checks if status is OK. If it is Ok then it continues..
         if (xhr.status == 200) {
             xmlDoc = xhr.responseXML;
-            var show = xmlDoc.getElementsByTagName('Show');
+            show = xmlDoc.getElementsByTagName('Show');
             var tID = null;
             // Delete function is used for clear "shows" div before displaying new data.
             delete1();
@@ -23,12 +23,13 @@ function loadTheatre() {
                    var str = show[i].children[a].nodeName;
                    if (str.includes('TheatreID')) {
                         tID = show[i].children[a].innerHTML;
+                        //console.log(moviename(i));
                         // This displays matching theatres data in "shows" div.  
                         if (theatreId == tID) {
                             document.getElementById("shows").innerHTML += 
                             "<div id='frame'>"
                                 +"<div id='movie'>" 
-                                    + moviename(i) 
+                                    + moviename(i)
                                 +"</div>"
                                 +"<div id='img'>" 
                                     + "<img src='" + image(i) +"' width='100'> </img>"
